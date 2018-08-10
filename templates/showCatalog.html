@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<h1>Categories</h1>
+	{% for catalog in catalogs %}
+		<a href='{{url_for('showItems', cat_name = catalog.name.replace(' ', ''))}}'>{{catalog.name}}</a>
+		<br>
+		{% endfor %}
+</body>
+</html>

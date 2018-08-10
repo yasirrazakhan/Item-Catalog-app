@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div>
+
+	<a href="{{url_for('createnewItem')}}">Add New item</a>
+	<br>
+	<br>
+	{%for item in items%}
+	<a href="{{url_for('itemDetail', cat_name = catalogs.name, item_name = item.name)}}">{{item.name}}</a>
+	<br>
+	{%endfor%}
+
+
+</div>
+</body>
+</html>
