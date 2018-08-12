@@ -1,17 +1,13 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
 	<title></title>
 </head>
 <body>
-<form action="{{url_for('createnewItem', cat_name = cat_name)}}" method="post">
+<form action="{{url_for('createnewCategory')}}" method="post">
 	<p>Name:</p>
 	<input type="text" name="name" placeholder="Item Name">
 	<br>
-	<p>Description:</p>
-	<input type="text" name="description" placeholder="Item description">
 	<br>
   <input type="submit">
 </form>

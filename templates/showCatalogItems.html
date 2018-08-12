@@ -6,11 +6,11 @@
 <body>
 <div>
 
-	<a href="{{url_for('createnewItem')}}">Add New item</a>
+	<a href="{{url_for('createnewItem', cat_name = cat_name)}}">Add New item</a>
 	<br>
 	<br>
 	{%for item in items%}
-	<a href="{{url_for('itemDetail', cat_name = catalogs.name, item_name = item.name)}}">{{item.name}}</a>
+	<a href="{{url_for('itemDetail', cat_name = cat_name, item_name = item.name)}}">{{item.name}}</a>
 	<br>
 	{%endfor%}
 

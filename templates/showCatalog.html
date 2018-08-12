@@ -4,10 +4,10 @@
 	<title></title>
 </head>
 <body>
-
+	<a href="{{url_for('createnewCategory')}}">Add New Category</a>
 	<h1>Categories</h1>
 	{% for catalog in catalogs %}
-		<a href='{{url_for('showItems', cat_name = catalog.name.replace(' ', ''))}}'>{{catalog.name}}</a>
+		<a href='{{url_for('showItems',  cat_name = catalog.name)}}'>{{catalog.name}}</a>
 		<br>
 		{% endfor %}
 </body>

@@ -4,11 +4,13 @@
 	<title></title>
 </head>
 <body>
-{%for item in items%}
-	<h3>{{item.name}}</h3>
-	<p>{{item.description}}</p>
-	<a href="{{url_for('editItem', cat_name = catalog.name, item_name= item.name )}}">Edit</a>
-	<a href="{{url_for('deleteItem', cat_name = catalog.name, item_name= item.name )}}">Delete</a>
-	{%endfor%}
+
+
+	<h3>{{items.name}}</h3>
+	<p>{{items.description}}</p>
+	<a href="{{url_for('editItem', cat_name = catalogs.name, item_name= items.name)}}">Edit</a>
+	<a href="{{url_for('deleteItem', cat_name = catalogs.name, item_name= items.name)}}">Delete</a>
+
+
 </body>
 </html>
