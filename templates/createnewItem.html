@@ -1,19 +1,61 @@
-
-
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title></title>
+    <title></title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+
 </head>
+
 <body>
-<form action="{{url_for('createnewItem', cat_name = cat_name)}}" method="post">
-	<p>Name:</p>
-	<input type="text" name="name" placeholder="Item Name">
-	<br>
-	<p>Description:</p>
-	<input type="text" name="description" placeholder="Item description">
-	<br>
-  <input type="submit">
-</form>
+
+    <nav class="navbar navbar-light" style="background-color: #E9ECEF;">
+        <span class="navbar-brand mb-0 h1"><h1>Catalog  App</h1></span>
+    </nav>
+    <div class="container">
+        <h1></h1>
+
+        <div class="jumbotron">
+            <h1>Add new Item</h1>
+            <form action="{{url_for('createnewItem', cat_name = cat_name)}}" method="post">
+            	<div class=".form-row">
+            		<div class="form-group col-6">
+            	<label for="item">Name</label>
+                <input type="text" id="item" class="form-control" name="name" placeholder="Item Name">
+                <br>
+
+            	</div>
+            	</div>
+
+            	<div class=".form-row">
+            		<div class="form-group col-6">
+	 				<label for="description">Description</label>
+       		         <input type="text" class="form-control" name="description" id="description" placeholder="Item description">
+        		        <br>
+            		</div>
+
+            	</div>
+            	<div class="form-row">
+            		<div class="form-group col-3">
+            		<input type="submit" class="btn btn-primary form-control">
+            		</div>
+
+          	 	<div class="form-group col-4">
+            		<a class="btn btn-primary" href="{{url_for('showItems', cat_name = cat_name)}}">Back to Items Page</a>
+            	</div>
+
+            	</div>
+
+
+
+            </form>
+
+        </div>
+
+    </div>
+
 </body>
+
 </html>

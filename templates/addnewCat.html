@@ -2,14 +2,44 @@
 <html>
 <head>
 	<title></title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+
 </head>
 <body>
-<form action="{{url_for('createnewCategory')}}" method="post">
-	<p>Name:</p>
-	<input type="text" name="name" placeholder="Item Name">
-	<br>
-	<br>
-  <input type="submit">
-</form>
+
+		<nav class="navbar navbar-light" style="background-color: #E9ECEF;">
+ 			<span class="navbar-brand mb-0 h1"><h1>Catalog App</h1></span>
+		</nav>
+
+	<div class="container">
+		<div class="jumbotron">
+			<form action="{{url_for('createnewCategory')}}" method="post">
+				<div class=".form-row">
+					<div class="form-group col-6">
+					<label for="newCat"><h3>Name</h3></label>
+					<input type="text" id="newCat" class="form-control" name="name" placeholder="Category Name">
+				<br>
+				</div>
+				</div>
+
+
+				<div class="form-row">
+					<div class="form-group col-1">
+  						<input class="btn btn-primary" type="submit">
+					</div>
+						<div class="form-group col-1">
+							<a class="btn btn-primary" href="{{url_for('showCatalog')}}">Cancel</a>
+						</div>
+
+					</div>
+
+
+			</form>
+		</div>
+
+
+	</div>
+
 </body>
 </html>

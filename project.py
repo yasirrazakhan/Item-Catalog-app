@@ -1,6 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for
-import urllib
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 app= Flask(__name__)
+
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -11,28 +11,23 @@ DBSession = sessionmaker(bind = engine)
 session = DBSession()
 
 
-# catalog = {'name': 'The CRUDdy Crab', 'id': '1'}
+@app.route('/test')
+def test():
+	DBSession = sessionmaker(bind = engine)
+	session = DBSession()
+	showAllCat = session.query(Category).all()
+	latest = session.query(Items).order_by(Items.id.desc()).all()[1:8]
+	return render_template('index.html', catalogs = showAllCat, items = latest)
 
-# catalogs = [{'name': 'The CRUDdy Crab', 'id': '1'}, {'name':'Blue Burgers', 'id':'2'},{'name':'Taco Hut', 'id':'3'}]
 
-
-# #Fake Menu Items
-# items = [{'name':'Cheese Pizza', 'description':'made with fresh cheese' ,'id': '1'},
-# 		  {'name':'Chocolate Cake','description':'made with Dutch Chocolate','id':'2'},
-# 		  {'name':'Caesar Salad', 'description':'with fresh organic vegetables','id':'3'},
-# 		  {'name':'Iced Tea', 'description':'with lemon','id':'4'},
-# 		  {'name':'Spinach Dip', 'description':'creamy dip with fresh spinach','id':'5'}
-# 		]
-# item =  {'name':'Cheese Pizza','description':'made with fresh cheese'}\
-
-#route for displaying all categories
 @app.route('/')
 @app.route('/catalog')
 def showCatalog():
 	DBSession = sessionmaker(bind = engine)
 	session = DBSession()
 	showAllCat = session.query(Category).all()
-	return render_template('showCatalog.html',catalogs = showAllCat)
+	latest = session.query(Items).order_by(Items.id.desc()).all()[1:8]
+	return render_template('showCatalog.html',catalogs = showAllCat, items = latest)
 
 
 
@@ -42,9 +37,10 @@ def showItems(cat_name):
 	DBSession = sessionmaker(bind = engine)
 	session = DBSession()
 	#new_name = cat_name.replace(' ', ' ')
+	showAllCat = session.query(Category).all()
 	selectCat = session.query(Category).filter_by(name=cat_name).one()
 	showCatitems = session.query(Items).filter_by(category_id = selectCat.id).all()
-	return render_template('showCatalogItems.html', catalogs=selectCat, cat_name = selectCat.name, items = showCatitems)
+	return render_template('showCatalogItems.html', catalogs=selectCat, allcat = showAllCat, cat_name = selectCat.name, items = showCatitems)
 
 
 #route for adding new item
@@ -120,8 +116,27 @@ def  deleteItem(cat_name, item_name):
 #json endpoint
 @app.route('/catalog.json')
 def getJson():
-	return "page to display Json for catalog"
+	DBSession = sessionmaker(bind = engine)
+	session = DBSession()
+	getallCat = session.query(Category).all()
+	return jsonify(Categories=[ i.serialize for i in getallCat])
 
+
+# @app.route('/category/<string:cat_name>/items/JSON')
+# def getCategoriesJSON(cat_id):
+# 	DBSession = sessionmaker(bind = engine)
+# 	session = DBSession()
+#     cat = session.query(Category).filter_by(id=cat_name).one()
+#     itm = session.query(Items).filter_by(category_id = cat.id).all()
+#     return jsonify(items=itm.serialize)
+
+
+# @app.route('/category/<string:cat_name>/<string:item_name>/JSON')
+# def getItemJSON():
+# 	DBSession = sessionmaker(bind = engine)
+# 	session = DBSession()
+#     item = session.query(Items).filter_by(name = item_name).one()
+#     return jsonify(item=item.serialize)
 
 if __name__ == '__main__':
 	app.debug = True
