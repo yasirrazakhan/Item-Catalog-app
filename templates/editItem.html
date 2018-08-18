@@ -11,21 +11,24 @@
 <body>
 
     <nav class="navbar navbar-light" style="background-color: #E9ECEF;">
-        <span class="navbar-brand mb-0 h1"><h1>Catalog  App</h1></span>
+        <div class="col-md-10"><span class="navbar-brand mb-0 h1"><h1>Catalog App</h1></span></div>
+        <div class="col-md-2 text-right">
+            <a class="btn btn-primary" href="{{url_for('gdisconnect')}}">LOGOUT</a>
+        </div>
     </nav>
 
     <div class="container">
 
         <div class="jumbotron">
 
-            <form action="{{url_for('editItem', cat_name= cat_name.name, item_name = item_name.name)}}" method="post">
+            <form action="{{url_for('editItem', cat_id= cat_id.id, item_id = item_id.id)}}" method="post">
 
                 <h1>Edit Item</h1>
 
                 <div class=".form-row">
                     <div class="form-group col-6 ">
                         <label for="itemname ">Name</label>
-                        <input type="text" class="form-control " id="itemname" name="name" placeholder="{{item_name.name}}">
+                        <input type="text" class="form-control " id="itemname" name="name" placeholder="{{item_id.name}}">
                         <br>
                     </div>
                 </div>
@@ -33,7 +36,7 @@
                 <div class=".form-row">
                     <div class="form-group col-6">
                         <label for="txt"> Description</label>
-                        <textarea class="form-control" name="description" id="txt" rows="3" placeholder="{{item_name.description}}"></textarea>
+                        <textarea class="form-control" name="description" id="txt" rows="3" placeholder="{{item_id.description}}"></textarea>
                     </div>
 
                 </div>
@@ -42,8 +45,10 @@
                 <div class=".form-row">
                     <p>Category:</p>
                     <div class="form-group col-6">
-                        <select class="form-control">
-                            <option value="{{ cat_name.name }}">{{ cat_name.name }}</option>
+                        <select name="categories" class="form-control">
+                            {% for cat in categories%}
+                            <option value="{{ cat.id }}">{{ cat.name }}</option>
+                            {%endfor%}
                         </select>
                     </div>
                 </div>
@@ -55,15 +60,12 @@
                         <input class="form-control btn btn-primary" type="submit" name='Edit'>
                     </div>
 
-                      	<div class="form-group col-3">
+                    <div class="form-group col-3">
 
-                		<a class="btn btn-primary" href="{{url_for('itemDetail', cat_name = cat_name.name, item_name = item_name.name)}}">Cancel</a>
-                	</div>
-
-
+                        <a class="btn btn-primary" href="{{url_for('itemDetail', cat_id = cat_id.id, item_id = item_id.id)}}">Cancel</a>
+                    </div>
 
                 </div>
-
 
             </form>
         </div>

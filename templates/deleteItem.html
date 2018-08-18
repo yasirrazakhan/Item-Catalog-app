@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
 
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+<head>
+    <title></title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
 
 </head>
+
 <body>
 
-	  <nav class="navbar navbar-light" style="background-color: #E9ECEF;">
- 			<span class="navbar-brand mb-0 h1"><h1>Catalog  App</h1></span>
-		</nav>
-	<div class="container">
+    <nav class="navbar navbar-light" style="background-color: #E9ECEF;">
+        <div class="col-md-10"><span class="navbar-brand mb-0 h1"><h1>Catalog App</h1></span></div>
+        <div class="col-md-2 text-right">
+            <a class="btn btn-primary" href="{{url_for('gdisconnect')}}">LOGOUT</a>
+        </div>
+    </nav>
+    <div class="container">
 
-		<div class="jumbotron">
-	<form action="{{url_for('deleteItem', cat_name = catalogs.name, item_name = items.name)}}" method="post">
-	<h2>Are you sure you want to delete {{items.name}}?</h2>
+        <div class="jumbotron">
+            <form action="{{url_for('deleteItem', cat_id = catalogs.id, item_id = items.id)}}" method="post">
+                <h2>Are you sure you want to delete {{items.name}}?</h2>
 
-	<input type="submit" class="btn btn-primary" name="delete">
-	<a class="btn btn-primary" href="{{url_for('itemDetail', cat_name = catalogs.name, item_name = items.name)}}">Cancel</a>
-	</div>
+                <input type="submit" class="btn btn-primary" name="delete">
+                <a class="btn btn-primary" href="{{url_for('itemDetail', cat_id = catalogs.id, item_id = items.id)}}">Cancel</a>
+            </form>
+        </div>
 
-
-</form>
-		</div>
-
-
-	</div>
+    </div>
 
 </body>
+
 </html>

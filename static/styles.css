@@ -1,13 +1,8 @@
-/*.navbar-custom {
-
-	background-color: #DBE2E8 !important;
-
-
+*{
+	font-family: "Helvetica Neue Bold", Roboto, Helvetica, Arial, sans-serif;
+	font-weight: 700;
 }
-.navb{
-	color: #F1F6F9;
-}
-*/
+
 .container {
 
 margin-bottom: 40px;
@@ -17,4 +12,9 @@ margin-top: 40px;
 .jumbotron{
 margin-top:80px;
 
+}
+
+.divider{
+
+	border-left: 20px;
 }

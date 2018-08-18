@@ -12,43 +12,44 @@
 <body>
 
     <nav class="navbar navbar-light" style="background-color: #E9ECEF;">
-        <span class="navbar-brand mb-0 h1"><h1>Catalog  App</h1></span>
+        <div class="col-md-10"><span class="navbar-brand mb-0 h1"><h1>Catalog App</h1></span></div>
+        <div class="col-md-2 text-right">
+            <a class="btn btn-primary" href="{{url_for('gdisconnect')}}">LOGOUT</a>
+        </div>
     </nav>
     <div class="container">
         <h1></h1>
 
         <div class="jumbotron">
             <h1>Add new Item</h1>
-            <form action="{{url_for('createnewItem', cat_name = cat_name)}}" method="post">
-            	<div class=".form-row">
-            		<div class="form-group col-6">
-            	<label for="item">Name</label>
-                <input type="text" id="item" class="form-control" name="name" placeholder="Item Name">
-                <br>
+            <form action="{{url_for('createnewItem', cat_id = cat_id)}}" method="post">
+                <div class=".form-row">
+                    <div class="form-group col-6">
+                        <label for="item">Name</label>
+                        <input type="text" id="item" class="form-control" name="name" placeholder="Item Name">
+                        <br>
 
-            	</div>
-            	</div>
+                    </div>
+                </div>
 
-            	<div class=".form-row">
-            		<div class="form-group col-6">
-	 				<label for="description">Description</label>
-       		         <input type="text" class="form-control" name="description" id="description" placeholder="Item description">
-        		        <br>
-            		</div>
+                <div class=".form-row">
+                    <div class="form-group col-6">
+                        <label for="description">Description</label>
+                        <input type="text" class="form-control" name="description" id="description" placeholder="Item description">
+                        <br>
+                    </div>
 
-            	</div>
-            	<div class="form-row">
-            		<div class="form-group col-3">
-            		<input type="submit" class="btn btn-primary form-control">
-            		</div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-3">
+                        <input type="submit" class="btn btn-primary form-control">
+                    </div>
 
-          	 	<div class="form-group col-4">
-            		<a class="btn btn-primary" href="{{url_for('showItems', cat_name = cat_name)}}">Back to Items Page</a>
-            	</div>
+                    <div class="form-group col-4">
+                        <a class="btn btn-primary" href="{{url_for('showItems', cat_id = cat_id)}}">Back to Items Page</a>
+                    </div>
 
-            	</div>
-
-
+                </div>
 
             </form>
 

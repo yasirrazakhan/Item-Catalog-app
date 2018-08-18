@@ -10,9 +10,10 @@
 
 <body>
     <nav class="navbar navbar-light" style="background-color: #E9ECEF;">
+
         <div class="col-md-10"><span class="navbar-brand mb-0 h1"><h1>Catalog App</h1></span></div>
         <div class="col-md-2 text-right">
-            <a class="btn btn-primary" href="{{url_for('gdisconnect')}}">LOGOUT</a>
+            <a href="{{url_for('showLogin')}}">Click Here to Log in </a>
         </div>
     </nav>
 
@@ -39,7 +40,6 @@
                 </div>
 
                 <div class="col">
-                    <a href="{{url_for('createnewCategory')}}">Add New Category</a>
                     <h2>Latest</h2>
                     <br> {% for i in items%} {{i.name}} {{(i.category_id.name)}}
 
