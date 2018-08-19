@@ -1,5 +1,12 @@
-from flask import Flask, render_template
-from flask import request, redirect, url_for, jsonify, flash
+from flask import (
+    Flask,
+    render_template,
+    request,
+    redirect,
+    url_for,
+    jsonify,
+    flash
+)
 
 from flask import session as login_session
 import random
@@ -122,7 +129,11 @@ def gconnect():
     output += '!</h1>'
     output += '<img src="'
     output += login_session['picture']
-    output += ' " style ="width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
+    output += ' "style="width: 300px;' \
+                'height: 300px;'\
+                'border-radius: 150px;' \
+                '-webkit-border-radius: 150px;'\
+                '-moz-border-radius: 150px;"> '
     flash("you are now logged in as %s" % login_session['username'])
     print "done!"
     return output
@@ -172,7 +183,8 @@ def gdisconnect():
     print 'In gdisconnect access token is %s' % access_token
     print 'User name is: '
     print login_session['username']
-    url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % login_session['access_token']
+    url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % login_session[
+        'access_token']
     h = httplib2.Http()
     result = h.request(url, 'GET')[0]
     print 'result is '
@@ -294,7 +306,9 @@ def editItem(cat_id, item_id):
         Items).filter_by(
         id=item_id).filter_by(category_id=editedCat.id).one()
     if request.method == 'POST':
-        if request.form['name'] and request.form['description'] and request.form['categories']:
+        if request.form[
+            'name'] and request.form[
+                'description'] and request.form['categories']:
             editedItem.name = request.form['name']
             editedItem.category_id = request.form['categories']
             editedItem.description = request.form['description']
